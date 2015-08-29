@@ -1,6 +1,7 @@
 from unittest import TestCase, main
 from binary_search import (recoursive_chop,
-                           while_chop,)
+                           while_chop,
+                           bisect_chop,)
 
 class BinarySortTests(TestCase):
 
@@ -32,6 +33,9 @@ class BinarySortTests(TestCase):
 
     def test_while_chop(self):
         self.assertChop(while_chop)
+
+    def test_bisect_chop(self):
+        self.assertChop(bisect_chop)
 
 
 if __name__ == '__main__':

@@ -30,6 +30,7 @@ Bugs for recoursive_chop:
 - but if the result from second half is -1, the it is returned and the len of first hlf should not be added
 '''
 
+
 ########### while implementation
 
 def devide(elem, elem_list):
@@ -52,4 +53,20 @@ def while_chop(elem, elem_list):
 '''
 Bugs for while_chop:
 - current index needs to be incremented with value returned from devide not assigned
+'''
+
+
+########### bisect implementation
+
+from bisect import bisect_left
+
+def bisect_chop(elem, elem_list):
+	result = bisect_left(elem_list, elem)
+	if result < len(elem_list) and elem_list[result] == elem:
+		return result
+	return -1
+
+'''
+Bugs:
+- cover situation when searched element is bigger than the last element of the list
 '''
