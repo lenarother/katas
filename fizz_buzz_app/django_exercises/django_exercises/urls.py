@@ -19,5 +19,7 @@ from fizz_buzz import views
 
 urlpatterns = [
     #url(r'^admin/', include(admin.site.urls)),
+    url(r'^fizz-buzz-result/', views.fizz_buzz, name='fizz_buzz_result'),
+    url(r'^fizz_buzz/fizz-buzz-result/', views.fizz_buzz_result, name='fizz_buzz_result'),
     url(r'^$', views.fizz_buzz, name='fizz_buzz'),
 ]
