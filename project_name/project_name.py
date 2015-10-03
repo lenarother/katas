@@ -25,7 +25,8 @@ from django.core.wsgi import get_wsgi_application
 from django.http import HttpResponse
 
 def index(request):
-    return HttpResponse('Hello Django!')
+    salutation = 'Hello {}'.format(__file__.replace('.py',''))
+    return HttpResponse(salutation)
 
 
 urlpatterns = (
