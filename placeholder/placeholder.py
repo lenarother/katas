@@ -20,12 +20,26 @@ settings.configure(
 )
 
 
+from django import forms
 from django.conf.urls import url
 from django.core.wsgi import get_wsgi_application
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseBadRequest
+
+class ImageForm(forms.Form):
+    """Form to validate requested placeholder image."""
+
+    height = forms.IntegerField(min_value=1, max_value=2000)
+    width = forms.IntegerField(min_value=1, max_value=2000)
+
 
 def placeholder(request, width, height):
-    return HttpResponse('Ok')
+    form = ImageForm({'height': height, 'width': width})
+    if form.is_valid():
+        height = form.cleaned_data['height']
+        width = form.cleaned_data['width']
+        # TODO: implement
+        return HttpResponse('Ok')
+    return HttpResponseBadRequest('Invalid Image Request')
 
 def index(request):
     salutation = 'Hello {}'.format(__file__.replace('.py',''))
@@ -33,6 +47,7 @@ def index(request):
 
 
 urlpatterns = (
+    url(r'^image/(?P<width>[0-9]+)x(?P<height>[0-9]+)/$', placeholder, name='placeholder'),
     url(r'^$', index),
 )
 
