@@ -1,3 +1,4 @@
+import hashlib
 import os
 import sys
 
@@ -6,6 +7,7 @@ from django.conf import settings
 DEBUG = os.environ.get('DEBUG', 'on') == 'on'
 SECRET_KEY = os.environ.get('SECRET_KEY', '_4v)d6cis6um^t0=nas@eato*r#td&xw9k1jv-%zwzy+cng_wl')
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+BASE_DIR = os.path.dirname(__file__)
 
 settings.configure(
     DEBUG=DEBUG,
@@ -17,12 +19,22 @@ settings.configure(
         'django.middleware.csrf.CsrfViewMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
     ),
+    INSTALLED_APPS=(
+        'django.contrib.staticfiles',
+    ),
+    TEMPLATES=(
+        {
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            'DIRS': (os.path.join(BASE_DIR, 'templates'), ),
+        },
+    ),
+    STATICFILES_DIRS=(
+        os.path.join(BASE_DIR, 'static'),
+    ),
+    STATIC_URL='/static/',
 )
 
 
-
-import hashlib
-import os
 from io import BytesIO
 from PIL import Image, ImageDraw
 
