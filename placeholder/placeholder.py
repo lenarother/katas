@@ -41,8 +41,10 @@ from PIL import Image, ImageDraw
 from django import forms
 from django.conf.urls import url
 from django.core.cache import cache
+from django.core.urlresolvers import reverse
 from django.core.wsgi import get_wsgi_application
 from django.http import HttpResponse, HttpResponseBadRequest
+from django.shortcuts import render
 from django.views.decorators.http import etag
 
 class ImageForm(forms.Form):
@@ -88,8 +90,12 @@ def placeholder(request, width, height):
     return HttpResponseBadRequest('Invalid Image Request')
 
 def index(request):
-    salutation = 'Hello {}'.format(__file__.replace('.py',''))
-    return HttpResponse(salutation)
+    example = reverse('placeholder', kwargs={'width': 50, 'height': 50})
+    context = {
+        'example': request.build_absolute_uri(example)
+    }
+    return render(request, 'home.html', context)
+
 
 
 urlpatterns = (
