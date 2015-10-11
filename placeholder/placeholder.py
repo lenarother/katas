@@ -2,6 +2,9 @@ import hashlib
 import os
 import sys
 
+from io import BytesIO
+from PIL import Image, ImageDraw
+
 from django.conf import settings
 
 DEBUG = os.environ.get('DEBUG', 'on') == 'on'
@@ -34,9 +37,6 @@ settings.configure(
     STATIC_URL='/static/',
 )
 
-
-from io import BytesIO
-from PIL import Image, ImageDraw
 
 from django import forms
 from django.conf.urls import url
@@ -103,7 +103,9 @@ urlpatterns = (
     url(r'^$', index),
 )
 
+
 application = get_wsgi_application()
+
 
 if __name__ == '__main__':
     from django.core.management import execute_from_command_line
