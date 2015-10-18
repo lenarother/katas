@@ -3,13 +3,13 @@ from django.conf import settings
 from django.http import Http404
 from django.shortcuts import render
 from django.template import Template
-from django.utils._os import safe_json
+from django.utils._os import safe_join
 
 
-def get_pagE_OR_404(name):
+def get_page_or_404(name):
     """Return page content as a django template or raise 404 error."""
     try:
-        file_parh = safe_join(settings.SITE_PAGES_DIRECTORY, name)
+        file_path = safe_join(settings.SITE_PAGES_DIRECTORY, name)
     except ValueError:
         raise Http404('Page Not Found')
     else:
