@@ -1,8 +1,11 @@
+import os
 import sys
 
 from django.conf import settings
 from django.core.management import execute_from_command_line
 
+
+BASE_DIR = os.path.dirname(__file__)
 
 settings.configure(
     DEBUG=True,
@@ -21,7 +24,9 @@ settings.configure(
         },
     ),
     STATIC_URL='/static/',
+    SITE_PAGES_DIRECTORY=os.path.join(BASE_DIR, 'pages'),
 )
+
 
 
 if __name__ == '__main__':
