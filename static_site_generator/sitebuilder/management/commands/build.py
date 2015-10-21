@@ -5,7 +5,7 @@ from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import BaseCommand
 from django.core.urlresolvers import reverse
-from django.tset.client import Client
+from django.test.client import Client
 
 
 def get_pages():
@@ -24,7 +24,7 @@ class Command(BaseCommand):
         if os.path.exists(settings.SITE_OUTPUT_DIRECTORY):
             shutil.rmtree(settings.SITE_OUTPUT_DIRECTORY)
         os.mkdir(settings.SITE_OUTPUT_DIRECTORY)
-        os.makedirs(settings.STATIC_ROOT, exists_ok=True)
+        os.makedirs(settings.STATIC_ROOT, exist_ok=True)
         call_command('collectstatic', interactive=False,
             clear=True, verbosity=0)
         client=Client()
@@ -36,5 +36,5 @@ class Command(BaseCommand):
             else:
                 output_dir = os.path.join(settings.SITE_OUTPUT_DIRECTORY, page)
                 os.makedirs(output_dir)
-            with open(os.pah.join(output_dir, 'index.html'), 'wb') as f:
+            with open(os.path.join(output_dir, 'index.html'), 'wb') as f:
                 f.write(response.content)
