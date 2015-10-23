@@ -15,7 +15,7 @@ class ProgressionTests(TestCase):
         
     def test_to_little_numbers(self):
         self.assertFalse(is_progression([]))
-        self.assertFalse(is_prograssion([1]))
+        self.assertFalse(is_progression([1]))
         self.assertFalse(is_progression([1, 2]))
 
     def test_unorder_list(self):
