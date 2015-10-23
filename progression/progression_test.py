@@ -1,17 +1,18 @@
 from unittest import TestCase, main
 
-from progression import is_progression
+from progression import (is_progression,
+                         has_progression, )
 
 
 class HasProgressionTests(TestCase):
 
     def test_three_numbers(self):
-        self.assertTrue(has_progresion([1, 2, 3]))
+        self.assertTrue(has_progression([1, 2, 3]))
         self.assertTrue(has_progression([1, 5, 9]))
         self.assertFalse(has_progression([1, 5, 10]))
 
     def test_to_short_input(self):
-        self.asertFalse(has_progression([]))
+        self.assertFalse(has_progression([]))
         self.assertFalse(has_progression([1]))
         self.assertFalse(has_progression([1, 2]))
         self.assertFalse(has_progression([1.0, 1.5]))
@@ -28,7 +29,7 @@ class HasProgressionTests(TestCase):
         self.assertFalse(has_progression([1, 2, 8, 11, 56, 100, 121]))
 
     def test_floats(self):
-        self.asertTrue(has_progression([1.0, 15.1, 2.1, 1.1, 3.1]))
+        self.assertTrue(has_progression([1.0, 15.1, 2.1, 1.1, 3.1]))
         self.assertTrue(has_progression([1.3, 4.0, 1.1, 2.3, 1.1, 1.2]))
         self.assertFalse(has_progression([9.0, 1.1, 5.5, 20.7, 8.8]))
 
