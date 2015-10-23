@@ -13,6 +13,24 @@ After answer new line character should be printed.
 """
 
 
+def has_progression(num_list):
+    """
+    Checks whether lists contains a fragment of progression.
+    Not all list elements need to be a part of the progresion.
+    """
+    num_list = [float(num) for num in sorted(num_list)]
+    if len(num_list) < 3:
+        return False
+    for nx, x in enumerate(num_list):
+        start_y = nx + 1
+        for ny, y in enumerate(num_list[start_y:]):
+            start_z = start_y + ny + 1
+            for z in num_list[start_z:]:
+                if y == round((x + z) / 2.0, 5):
+                    return True
+    return False
+
+
 def is_progression(num_list, sort_list=True):
     """Check whether given list of numbers is a progression"""
     if sort_list:
