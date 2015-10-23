@@ -14,6 +14,7 @@ After answer new line character should be printed.
 
 
 def is_progression(num_list, sort_list=True):
+    """Check whether given list of numbers is a progression"""
     if sort_list:
         num_list = [float(num) for num in sorted(num_list)]
     if len(num_list) < 3:
