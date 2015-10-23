@@ -23,13 +23,14 @@ class ProgressionTests(TestCase):
         self.assertTrue(is_progression([2, 3, 1]))
         self.assertFalse(is_progression([10, 5, 1]))
 
-    def test_ling_list(self):
-        self.assertTrue(is_progression([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]))
+    def test_long_list(self):
+        self.assertTrue(is_progression([1, 2, 3, 4]))
+        self.assertTrue(is_progression([1, 3, 5, 7, 9, 11, 13, 15]))
         self.assertFalse(is_progression([1, 2, 3, 4, 5, 6, 7, 8, 15]))
 
     def test_floats(self):
         self.assertTrue(is_progression([0.5, 1.0, 1.5, 2.0]))
-        self.assertFalse(is_progresion([0.5, 1.0, 1.5, 3.0]))
+        self.assertFalse(is_progression([0.5, 1.0, 1.5, 3.0]))
 
 
 
