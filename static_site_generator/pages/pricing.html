@@ -47,10 +47,10 @@
                     </div>
                     <ul class="list-group list-group-flush text-center">
                         {% for feature in features %}
-                            <li class="list-group-item">
+                            <li class="list-group-item
                                 {% if forloop.counter not in plan.features %}
                                     disabled
-                                {% endif %}
+                                {% endif %}">
                                 {{ feature }}
                             </li>
                         {% endfor %}
@@ -61,7 +61,7 @@
                         </a>
                     </div>
                 </div>
-            </div>            
+            </div>
        {% endfor %}
     </div> 
     <div class="row">
