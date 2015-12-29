@@ -8,7 +8,7 @@ from .models import Sprint, Task
 User = get_user_model()
 
 
-class SprintSerlializer(serializers.ModelSerializer):
+class SprintSerializer(serializers.ModelSerializer):
 
     links = serializers.SerializerMethodField()
 
@@ -24,7 +24,7 @@ class SprintSerlializer(serializers.ModelSerializer):
         }
 
 
-class TaskSerilizer(serializers.ModelSerializer)
+class TaskSerializer(serializers.ModelSerializer):
 
     assigned = serializers.SlugRelatedField(
         slug_field=User.USERNAME_FIELD, required=False, allow_null=True,
@@ -43,7 +43,7 @@ class TaskSerilizer(serializers.ModelSerializer)
 
     def get_links(self, obj):
         request = self.context['request']
-        return {
+        links = {
             'self': reverse('task-detail',
                 kwargs={'pk': obj.pk}, request=request),
             'sprint': None,
@@ -56,7 +56,7 @@ class TaskSerilizer(serializers.ModelSerializer)
             links['assigned'] = reverse('user-detail',
                 kwargs={User.USERNAME_FIELD: obj.assigned}, request=request)
         return links
-        
+
 
 class UserSerializer(serializers.ModelSerializer):
 
