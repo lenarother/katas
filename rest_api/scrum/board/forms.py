@@ -1,6 +1,11 @@
+from django.contrib.auth import get_user_model
+
 import django_filters
 
-from .models import Task
+from .models import Task, Sprint
+
+
+User = get_user_model()
 
 
 class NullFilter(django_filters.BooleanFilter):
@@ -19,3 +24,18 @@ class TaskFilter(django_filters.FilterSet):
 	class Meta:
 		model = Task
 		fields = ('sprint', 'status', 'assigned', 'backlog', )
+
+	def __init__(self, *args, **kwargs):
+		super().__init(*args, **kwargs)
+		self.filters['asigned'].extra.update(
+			{'to_field_name': User.USERNAME_FIELD})
+
+
+class SprintFilter(django_filters.FilterSet):
+
+	end_min = django_filters.DateFilter(name='end', lookup_type='gte')
+	end_max = django_filters.DateFilter(name='end', lookup_type='lte')
+
+	class Meta:
+		model = Sprint
+		fields = ('end_min', 'end_max')
