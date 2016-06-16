@@ -19,4 +19,5 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.home, name='fizzbuzz'),
+    url(r'(?P<fb>\w+)/$', views.home, name='fizzbuzz'),
 ]

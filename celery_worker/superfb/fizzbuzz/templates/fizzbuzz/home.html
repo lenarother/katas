@@ -4,5 +4,15 @@
 </head>
 <body>
     <h1>Welcome to Fizz Buzz App</h1>
+    </br>
+    <form method="POST">{% csrf_token %}
+        <input name="fizzbuzz" />
+    </form>
+    </br>
+    {% if fb %}
+        <h2>Fizz Buzz Result for {{ fb }}:</h2>
+        <h2> {{ fb }} </h2>
+    {% endif %}
+
 </body>
 </html>
