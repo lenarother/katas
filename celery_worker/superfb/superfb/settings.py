@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'djcelery',
     'fizzbuzz',
 ]
 
@@ -120,3 +121,10 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Asyncgronous task settings
+BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'rpc://'
+CELERY_TIMEZONE = 'Europe/Berlin'
+CELERY_ENABLE_UTC = True
+CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'

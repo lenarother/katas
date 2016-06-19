@@ -9,9 +9,11 @@
         <input name="fizzbuzz" />
     </form>
     </br>
-    {% if fb %}
-        <h2>Fizz Buzz Result for {{ fb }}:</h2>
-        <h2> {{ fb }} </h2>
+    {% if fb_input %}
+        <h2>Fizz Buzz Result for {{ fb_input }}:</h2>
+    {% endif %}
+    {% if fb_result %}
+        <h2> {{ fb_result }} </h2>
     {% endif %}
 
 </body>
