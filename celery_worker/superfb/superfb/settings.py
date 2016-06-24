@@ -122,7 +122,7 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 
-# Asyncgronous task settings
+# Asynchronous task settings
 BROKER_URL = 'redis://localhost:6379/0'
 CELERY_RESULT_BACKEND = 'rpc://'
 CELERY_TIMEZONE = 'Europe/Berlin'
